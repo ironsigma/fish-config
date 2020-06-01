@@ -15,13 +15,15 @@ abbr --add --global fd fdfind
 abbr --add --global gits git status
 abbr --add --global psg 'ps -ef | grep -i'
 abbr --add --global systemctl sudo systemctl
-abbr --add --global tigs tig status
+abbr --add --global tigs command tig status
 abbr --add --global dpkg sudo dpkg
 
 # Aliases
 alias grep='grep --color'
-alias la='env LC_COLLATE=C ls --color=auto -lahN'
 alias ls='env LC_COLLATE=C ls --color=auto -N'
+alias la='env LC_COLLATE=C ls --color=auto -lahN'
+alias lar='env LC_COLLATE=C ls --color=auto -lahNtr'
+alias tig='tig --all'
 alias ..='cd ..'
 alias ...='cd ../..'
 
