@@ -42,12 +42,12 @@ function fish_prompt --description 'write out the prompt'
             if test $status -eq 0
                 set -l git_ahead (string replace -r '^\d+\s+' '' -- $git_ahead_behind_count)
                 if test $git_ahead -ne 0
-                    set git_ahead_behind " 🠙$git_ahead"
+                    set git_ahead_behind " ⬆$git_ahead"
                 end
 
                 set -l git_behind (string replace -r '\s+\d+$' '' -- $git_ahead_behind_count)
                 if test $git_behind -ne 0
-                    set git_ahead_behind "$git_ahead_behind 🠛$git_behind"
+                    set git_ahead_behind "$git_ahead_behind ⬇$git_behind"
                 end
             end
         end
