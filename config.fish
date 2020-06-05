@@ -12,7 +12,7 @@ abbr --add --global apt sudo aptitude
 abbr --add --global chown sudo chown
 abbr --add --global cx chmod +x
 abbr --add --global fd fdfind
-abbr --add --global gits git status
+abbr --add --global gits git status --show-stash --untracked-files=all
 abbr --add --global psg 'ps -ef | grep -i'
 abbr --add --global systemctl sudo systemctl
 abbr --add --global tigs command tig status
