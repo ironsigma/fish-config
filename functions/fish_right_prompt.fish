@@ -1,4 +1,9 @@
 function fish_right_prompt
+    # skip right prompt on real terminal
+    if test $TERM = 'linux'
+        return
+    end
+
     # save status
     set -l last_status $status
 
