@@ -7,6 +7,7 @@ set -xg EDITOR /usr/bin/vim
 set -xg JAVA_HOME /usr/lib64/jvm/java-1.8.0-openjdk-1.8.0
 set -xg MAVEN_HOME $HOME/Vendor/maven
 set -xg SPARK_HOME $HOME/Vendor/spark
+set -xg SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 
 
 # WSL
@@ -24,6 +25,7 @@ abbr --add --global psg 'ps -ef | grep -i'
 abbr --add --global systemctl sudo systemctl
 abbr --add --global tigs tig status
 abbr --add --global rpm sudo rpm
+abbr --add --global xman man -Hfirefox
 
 
 # Aliases
@@ -47,5 +49,6 @@ for path in "$MAVEN_HOME/bin" \
 end
 
 
-# Go Home
+# Autoexec
+gpgconf --launch gpg-agent
 cd
