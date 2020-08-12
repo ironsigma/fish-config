@@ -22,7 +22,9 @@ abbr --add --global chown sudo chown
 abbr --add --global cx chmod +x
 abbr --add --global gits git status --show-stash --untracked-files=all
 abbr --add --global manx man -Hopera
+abbr --add --global pip pip3
 abbr --add --global psg 'ps -ef | grep -i'
+abbr --add --global python python3
 abbr --add --global rpm sudo rpm
 abbr --add --global setg 'set | grep -i'
 abbr --add --global systemctl sudo systemctl
