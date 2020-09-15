@@ -12,13 +12,13 @@ function fish_prompt --description 'write out the prompt'
     echo -n -s (set_color bryellow) $working_dir
 
     # git branch  {{{1
-    set -l git_branch (git branch --no-color 2> /dev/null)
+    set -l git_branch (/usr/bin/git branch --no-color 2> /dev/null)
     if test $status -eq 0
-        set git_branch (printf '%s\n' $git_branch | sed -e '/^[^*]/d' -e 's/^* \(.*\)/\1/')
+        set git_branch (printf '%s\n' $git_branch | /usr/bin/sed -e '/^[^*]/d' -e 's/^* \(.*\)/\1/')
 
         # find modified files  {{{2
-        set -l git_status (git status --porcelain -u)
-        set -l git_modified (printf '%s\n' $git_status | grep '^ M' | wc -l)
+        set -l git_status (/usr/bin/git status --porcelain -u)
+        set -l git_modified (printf '%s\n' $git_status | /usr/bin/grep '^ M' | /usr/bin/wc -l)
 
         if test $git_modified -ne 0
             set git_modified " ✻$git_modified"
@@ -27,7 +27,7 @@ function fish_prompt --description 'write out the prompt'
         end
 
         # find untracked files  {{{2
-        set -l git_untracked (printf '%s\n' $git_status | grep '^??' | wc -l)
+        set -l git_untracked (printf '%s\n' $git_status | /usr/bin/grep '^??' | /usr/bin/wc -l)
         if test $git_untracked -ne 0
             set git_untracked " ◇$git_untracked"
         else
@@ -36,9 +36,9 @@ function fish_prompt --description 'write out the prompt'
 
         # find ahead or behind  {{{2
         set -l git_ahead_behind
-        git config --get "branch.$git_branch.merge" >/dev/null 2>&1
+        /usr/bin/git config --get "branch.$git_branch.merge" >/dev/null 2>&1
         if test $status -eq 0
-            set -l git_ahead_behind_count (git rev-list --count --left-right '@{upstream}...HEAD' 2>/dev/null)
+            set -l git_ahead_behind_count (/usr/bin/git rev-list --count --left-right '@{upstream}...HEAD' 2>/dev/null)
             if test $status -eq 0
                 set -l git_ahead (string replace -r '^\d+\s+' '' -- $git_ahead_behind_count)
                 if test $git_ahead -ne 0
@@ -53,7 +53,7 @@ function fish_prompt --description 'write out the prompt'
         end
 
         # find stash count  {{{2
-        set -l stash_count (git stash list | wc -l)
+        set -l stash_count (/usr/bin/git stash list | /usr/bin/wc -l)
         if test $stash_count -ne 0
             set stash_count " ≡$stash_count"
         else
@@ -63,7 +63,7 @@ function fish_prompt --description 'write out the prompt'
         # add symbol for branch or detached  {{{2
         echo -n (set_color brgreen)
         if string match '(HEAD detached at*' $git_branch > /dev/null
-            set git_branch (printf "$git_branch" | sed -e 's/(HEAD detached at //' -e 's/)//')
+            set git_branch (printf "$git_branch" | /usr/bin/sed -e 's/(HEAD detached at //' -e 's/)//')
             echo -n ' ➦'
         else
             echo -n ' '
@@ -77,7 +77,7 @@ function fish_prompt --description 'write out the prompt'
     end
 
     # bkg jobs  {{{1
-    set -l job_count (jobs | grep stopped | wc -l)
+    set -l job_count (jobs | /usr/bin/grep stopped | /usr/bin/wc -l)
     if test $job_count -ne 0
         echo -n -s (set_color red) " $job_count"
     end

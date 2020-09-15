@@ -43,6 +43,6 @@ function fish_right_prompt
     end
 
     # time
-    echo -n -s (set_color brblack) (date '+%a %b %-d  %H:%M:%S')
+    echo -n -s (set_color brblack) (/usr/bin/date '+%a %b %-d  %H:%M:%S')
 end
 
